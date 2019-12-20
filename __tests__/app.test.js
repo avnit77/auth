@@ -10,15 +10,12 @@ describe('app routes', () => {
   beforeAll(() => {
     connect();
   });
-
   beforeEach(() => {
     return mongoose.connection.dropDatabase();
   });
-
   afterAll(() => {
     return mongoose.connection.close();
   });
-
   it('can signup a user', () => {
     return request(app)
       .post('/api/v1/auth/signup')
@@ -31,7 +28,6 @@ describe('app routes', () => {
         });
       });
   });
-
   it('can login a user', async() => {
     const user = await User.create({ email: 'test@test.com', password: 'password' });
     return request(app)
@@ -45,7 +41,6 @@ describe('app routes', () => {
         });
       });
   });
-
   it('fails when a bad email is used', async() => {
     await User.create({ email: 'test@test.com', password: 'password' });
     return request(app)
@@ -58,7 +53,6 @@ describe('app routes', () => {
         });
       });
   });
-
   it('fails when a bad password is used', async() => {
     await User.create({ email: 'test@test.com', password: 'password' });
     return request(app)
